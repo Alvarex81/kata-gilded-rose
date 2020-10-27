@@ -1,38 +1,52 @@
 package edu.alenasoft.gildedrose;
 
-public class Item {
+public class Item
+{
 
-  public String name;
-  public int sellIn;
-  public int quality;
+  private String name;
+  private int sellIn;
+  private int quality;
+  private ItemBehaivor itemBehaivor;
 
-  public Item(String name, int sellIn, int quality) {
-    this.setName(name);
-    this.setSellIn(sellIn);
-    this.setQuality(quality);
+  public Item (String name, int sellIn, int quality)
+  {
+    this.name = name;
+    this.sellIn = sellIn;
+    this.quality = quality;
+
+    switch (name){
+      case "Aged Brie":
+        itemBehaivor = new AgingItemBehaivor();
+        break;
+      case "Sulfuras, Hand of Ragnaros":
+        itemBehaivor = new LegendItemBehaivor();
+        break;
+      case "Backstage passes to a TAFKAL80ETC concert":
+        itemBehaivor = new AgingItemBehaivor();
+        break;
+      case "Conjured Mana Cake":
+        itemBehaivor = new ConjuredItemBehaivor();
+        break;
+      default:
+        itemBehaivor = new RegularItemBehaivor();
+        break;
+    }
+
   }
 
-  /* Generated getter and setter code */
   public String getName() {
-    return name;
+    return this.name;
   }
-
+  public int getSellIn() { return this.sellIn; }
+  public int getQuality() {
+    return this.quality;
+  }
   public void setName(String name) {
     this.name = name;
   }
-
-  public int getSellIn() {
-    return sellIn;
-  }
-
   public void setSellIn(int sellIn) {
     this.sellIn = sellIn;
   }
-
-  public int getQuality() {
-    return quality;
-  }
-
   public void setQuality(int quality) {
     this.quality = quality;
   }
@@ -40,5 +54,12 @@ public class Item {
   @Override
   public String toString() {
     return "Item{" + "name='" + name + '\'' + ", sellIn=" + sellIn + ", quality=" + quality + '}';
+  }
+
+  public void updateQuality () {itemBehaivor.updateQuality(this);}
+
+  public void validateQualityRange () {
+    if (this.getQuality() < 0) {this.setQuality(0);}
+    if (this.getQuality() > 50) {this.setQuality(50);}
   }
 }
