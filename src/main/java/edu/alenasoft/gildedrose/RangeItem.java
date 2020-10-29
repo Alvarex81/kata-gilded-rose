@@ -24,13 +24,11 @@ public class RangeItem {
     }
 
     boolean inRange (Integer value){
+
         if (this.minValue == null){
-
             return value <= this.maxValue;
-
         }
         else if (this.maxValue == null){
-
             return this.minValue <= value;
         }
         else return (this.minValue <= value) && (value < this.maxValue);
