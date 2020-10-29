@@ -7,6 +7,7 @@ public class Item
   private int sellIn;
   private int quality;
   private ItemBehaivor itemBehaivor;
+  private ItemParameters itemParameters = new ItemParameters();
 
   public Item (String name, int sellIn, int quality)
   {
@@ -59,7 +60,7 @@ public class Item
   public void updateQuality () {itemBehaivor.updateQuality(this);}
 
   public void validateQualityRange () {
-    if (this.getQuality() < 0) {this.setQuality(0);}
-    if (this.getQuality() > 50) {this.setQuality(50);}
+    if (this.getQuality() < itemParameters.minQualityValue) {this.setQuality(itemParameters.minQualityValue);}
+    if (this.getQuality() > itemParameters.maxQualityValue) {this.setQuality(itemParameters.maxQualityValue);}
   }
 }

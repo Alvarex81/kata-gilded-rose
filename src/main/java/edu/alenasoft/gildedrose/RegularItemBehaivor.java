@@ -5,9 +5,9 @@ public class RegularItemBehaivor implements ItemBehaivor {
     public void updateQuality(Item item) {
 
         if (item.getSellIn() > 0)
-            item.setQuality(item.getQuality() - 1);
+            item.setQuality(item.getQuality() - itemParameters.minModifierRegular);
         else
-            item.setQuality(item.getQuality() - 2);
+            item.setQuality(item.getQuality() - itemParameters.maxModifierRegular);
 
         item.validateQualityRange();
 

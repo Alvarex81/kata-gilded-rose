@@ -5,9 +5,9 @@ public class ConjuredItemBehaivor implements ItemBehaivor {
     public void updateQuality(Item item) {
 
         if (item.getSellIn() > 0)
-            item.setQuality(item.getQuality() - 2);
+            item.setQuality(item.getQuality() - itemParameters.minModifierConjured);
         else
-            item.setQuality(item.getQuality() - 4);
+            item.setQuality(item.getQuality() - itemParameters.maxModifierConjured);
 
         item.validateQualityRange();
 
